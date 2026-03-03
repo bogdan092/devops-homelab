@@ -15,4 +15,4 @@ This contains IaC and config files
 *02-docker: Dockerfiles and docker-comose config for custom applications
 *03-kubernetes: YAML masnifests (deploys,services,ingress) for cluster workloads
 
-*(This project is actively being built)
+*(This project is actively being built)*
