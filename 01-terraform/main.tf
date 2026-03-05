@@ -59,6 +59,49 @@ resource "libvirt_domain" "docker_node" {
 
 # 4. Output the IP Address so we know how to connect to it!
 output "vm_ip" {
-  value       = libvirt_domain.docker_node.network_interface[0].addresses[0]
-  description = "The IP address of the Docker Node"
+  value       = try(libvirt_domain.docker_node.network_interface[0].addresses[0], "IP not assigned yet or VM is off")
+  description = "The IP address of the first Docker Node"
+}
+
+# ==========================================
+# node-02 configuration
+# ==========================================
+
+# 1. Create a separate hard drive for the second VM
+resource "libvirt_volume" "ubuntu_image_02" {
+  name   = "ubuntu-jammy-02.qcow2"
+  pool   = "default"
+  source = "https://cloud-images.ubuntu.com/jammy/current/jammy-server-cloudimg-amd64.img"
+  format = "qcow2"
+}
+
+# 2. Define the second Virtual Machine
+resource "libvirt_domain" "docker_node_02" {
+  name   = "docker-node-02"
+  memory = "2048"
+  vcpu   = 2
+
+  # We reuse the exact same Cloud-Init ISO from the first node!
+  cloudinit = libvirt_cloudinit_disk.commoninit.id
+
+  network_interface {
+    network_name   = "default"
+    wait_for_lease = true
+  }
+
+  disk {
+    volume_id = libvirt_volume.ubuntu_image_02.id
+  }
+
+  console {
+    type        = "pty"
+    target_port = "0"
+    target_type = "serial"
+  }
+}
+
+# 3. Output the IP Address for node 2
+output "vm_ip_02" {
+  value       = try(libvirt_domain.docker_node_02.network_interface[0].addresses[0], "IP not assigned yet or VM is off")
+  description = "The IP address of Docker Node 02"
 }
