@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevOps Lab</title>
+    <style>
+        /* CSS styling directly in the file for simplicity */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Fira Code', 'Courier New', Courier, monospace; /* Terminal style font */
+            background-color: #0f172a; /* Deep dark blue background */
+            color: #e2e8f0; /* Light grey/white text */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            text-align: center;
+            background-color: #1e293b; /* Slightly lighter box */
+            padding: 3rem 4rem;
+            border-radius: 12px;
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
+            border-top: 5px solid #10b981; /* Emerald green top accent */
+            transition: transform 0.3s ease;
+        }
+
+        .container:hover {
+            transform: translateY(-5px); /* Tiny floating effect on hover */
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            color: #38bdf8; /* Techy sky blue */
+            letter-spacing: 1px;
+        }
+
+        p {
+            margin-top: 1rem;
+            font-size: 1.2rem;
+            color: #94a3b8;
+        }
+
+        .icon {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            display: inline-block;
+            animation: pulse 2s infinite; /* Simple breathing animation */
+        }
+
+        .status {
+            display: inline-block;
+            margin-top: 1.5rem;
+            padding: 0.5rem 1rem;
+            background-color: rgba(16, 185, 129, 0.1);
+            color: #10b981;
+            border: 1px solid #10b981;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        /* Animation for the rocket */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="icon">🚀</div>
+        <h1>This is my DevOps lab</h1>
+        <p>Continuous Integration • Continuous Delivery</p>
+        <div class="status">● Systems Operational</div>
+    </div>
+
+</body>
+</html>
