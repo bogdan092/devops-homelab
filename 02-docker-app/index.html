@@ -3,83 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DevOps Lab</title>
+    <title>Bogdan's DevOps Stack</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({ startOnLoad: true, theme: 'forest' });</script>
     <style>
-        /* CSS styling directly in the file for simplicity */
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Fira Code', 'Courier New', Courier, monospace; /* Terminal style font */
-            background-color: #0f172a; /* Deep dark blue background */
-            color: #e2e8f0; /* Light grey/white text */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-
-        .container {
-            text-align: center;
-            background-color: #1e293b; /* Slightly lighter box */
-            padding: 3rem 4rem;
-            border-radius: 12px;
-            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
-            border-top: 5px solid #10b981; /* Emerald green top accent */
-            transition: transform 0.3s ease;
-        }
-
-        .container:hover {
-            transform: translateY(-5px); /* Tiny floating effect on hover */
-        }
-
-        h1 {
-            margin: 0;
-            font-size: 2.5rem;
-            color: #38bdf8; /* Techy sky blue */
-            letter-spacing: 1px;
-        }
-
-        p {
-            margin-top: 1rem;
-            font-size: 1.2rem;
-            color: #94a3b8;
-        }
-
-        .icon {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            display: inline-block;
-            animation: pulse 2s infinite; /* Simple breathing animation */
-        }
-
-        .status {
-            display: inline-block;
-            margin-top: 1.5rem;
-            padding: 0.5rem 1rem;
-            background-color: rgba(16, 185, 129, 0.1);
-            color: #10b981;
-            border: 1px solid #10b981;
-            border-radius: 50px;
-            font-size: 0.9rem;
-            font-weight: bold;
-        }
-
-        /* Animation for the rocket */
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
-        }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; max-width: 1000px; margin: 0 auto; padding: 20px; background-color: #f4f7f6; }
+        h1 { color: #2c3e50; text-align: center; border-bottom: 2px solid #2c3e50; padding-bottom: 10px; }
+        section { background: white; margin: 20px 0; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        h2 { color: #e67e22; border-left: 5px solid #e67e22; padding-left: 10px; }
+        .command { background: #2c3e50; color: #ecf0f1; padding: 2px 6px; border-radius: 4px; font-family: monospace; }
+        .status { text-align: center; font-style: italic; color: #7f8c8d; }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <div class="icon">🚀</div>
-        <h1>This is my DevOps lab</h1>
-        <p>Continuous Integration • Continuous Delivery</p>
-        <div class="status">● Systems Operational</div>
-    </div>
+    <h1>🚀 Bogdan's Infrastructure-as-Code Lab</h1>
+
+    <section>
+        <h2>1. Infrastructure Layer (Terraform + KVM)</h2>
+        <p>Terraform acts as the <b>Architect</b>. It reads the blueprint and tells the Hypervisor (KVM) exactly what to build.</p>
+        
+        <div class="mermaid">
+        graph LR
+            subgraph "Your Workstation (HP Z4)"
+                A[main.tf] -->|terraform apply| B(Terraform Engine)
+                C[cloud_init.cfg] --> B
+            end
+            
+            B -->|libvirt API| D[KVM / QEMU]
+            
+            subgraph "Virtual Reality"
+                D --> E[VM: node-01]
+                D --> F[VM: node-02]
+            end
+
+            style A fill:#5C4EE5,color:#fff
+            style D fill:#f96,stroke:#333
+        </div>
+        <p class="status">Commands: <span class="command">terraform plan</span> → <span class="command">terraform apply</span></p>
+    </section>
+
+    <section>
+        <h2>2. Application Layer (Docker)</h2>
+        <p>Docker acts as the <b>Shipping Container</b>. It bakes the code into an image so it runs the same way on any machine.</p>
+        
+        <div class="mermaid">
+        graph TD
+            subgraph "Build Phase"
+                G[Dockerfile] -->|docker build| H[Custom Image]
+                I[index.html] --> H
+            end
+            
+            H -->|docker run| J(Running Container)
+            
+            subgraph "Network Access"
+                K[Browser] -->|Port Mapping| J
+            end
+
+            style G fill:#2496ed,color:#fff
+            style J fill:#2496ed,color:#fff
+        </div>
+        <p class="status">Commands: <span class="command">docker build</span> → <span class="command">docker run</span></p>
+    </section>
+
+    <section>
+        <h2>3. Orchestration Layer (Kubernetes)</h2>
+        <p><i>The Orchestrator is currently sleeping. We will wake it up in the next phase of the lab...</i></p>
+        <div style="text-align: center; font-size: 3rem;">🏗️</div>
+    </section>
 
 </body>
 </html>
