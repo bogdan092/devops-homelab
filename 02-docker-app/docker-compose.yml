@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  # This is our custom dashboard
+  dashboard:
+    image: nginx:latest
+    container_name: devops-dashboard
+    ports:
+      - "80:80"
+    volumes:
+      - ./index.html:/usr/share/nginx/html/index.html
+    restart: always
+
+  # This is a second helper service just to show how Compose works
+  # It's a tiny tool that just tells you your IP and hostname
+  whoami:
+    image: traefik/whoami
+    container_name: helper-tool
+    ports:
+      - "8080:80"
+    restart: always
