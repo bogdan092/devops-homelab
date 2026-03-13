@@ -1,4 +1,4 @@
-cat << 'EOF' > ~/devops-homelab/README.md
+
 # 🚀 Bogdan's DevOps Datacenter (Homelab)
 
 Welcome to my local, highly-available datacenter built from scratch on an HP Z4 Workstation. This project demonstrates a complete, modern DevOps lifecycle—from bare-metal infrastructure provisioning to Kubernetes orchestration and real-time monitoring.
